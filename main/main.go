@@ -13,8 +13,8 @@ func main(){
 	wg.Add(1)
 
 	defer wg.Wait()
-
-	for i:=1; i <1000; i++ {
+   // this is for 5* 10000 go routines
+	for i:=1; i <10000; i++ {
 		go test()
 	}
 }
@@ -36,8 +36,10 @@ func test() {
 
 	//fmt.Println(<-c)
 
+        fmt.Println("starting curl!")
 	// Doing a for loop over a channel will keep waiting for the new data to show up in the channel
 	// which it will retrieve in l
+	//these are 5 go-routines
 	for l := range c {
 		// its a function literal which is similar to lamda in java
 		go func(link string) {
